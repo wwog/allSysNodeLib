@@ -1,5 +1,4 @@
-const nodeApi = require("./build/Release/kiwi.node");
-const axios = require("axios");
+const nodeApi = require("./kiwi.node");
 
 /**
  *
