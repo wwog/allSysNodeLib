@@ -37,6 +37,7 @@
         [
           "OS=='mac'",
           {
+            "target_name": "kiwi",
             "xcode_settings": {
               "MACOSX_DEPLOYMENT_TARGET": "13.0"
             },

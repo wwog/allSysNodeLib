@@ -1,7 +1,6 @@
 const nodeApi = require("./kiwi.node");
 
 /**
- *
  * @param {string} apiKey
  */
 function initial(apiKey) {
