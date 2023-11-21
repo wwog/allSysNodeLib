@@ -9,23 +9,8 @@
         [
           "OS=='win'",
           {
-            "conditions": [
-              [
-                "target_arch == 'ia32'",
-                {
-                  "libraries": [
-                    "<(module_root_dir)/lib/Kiwi32.lib"
-                  ]
-                }
-              ],
-              [
-                "target_arch == 'x64'",
-                {
-                  "libraries": [
-                    "<(module_root_dir)/lib/Kiwi64.lib"
-                  ]
-                }
-              ]
+            "libraries": [
+              "<(module_root_dir)/lib/win64.lib"
             ],
             "msvs_settings": {
               "VCCLCompilerTool": {
