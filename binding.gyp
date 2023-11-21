@@ -16,7 +16,7 @@
                   "msvs_settings": {
                     "VCLinkerTool": {
                       "AdditionalDependencies": [
-                        "/Users/sn-0188/Documents/lib/kiwi32.lib"
+                        "./kiwi32.lib"
                       ]
                     }
                   }
@@ -28,7 +28,7 @@
                   "msvs_settings": {
                     "VCLinkerTool": {
                       "AdditionalDependencies": [
-                        "/Users/sn-0188/Documents/lib/kiwi64.lib"
+                        "./kiwi64.lib"
                       ]
                     }
                   }
@@ -49,7 +49,7 @@
               "MACOSX_DEPLOYMENT_TARGET": "13.0"
             },
             "libraries": [
-              "/Users/sn-0188/Documents/lib/libKiwi.a"
+              "/Users/sn-0188/Documents/lib/lib/libKiwi.a"
             ]
           }
         ]
@@ -62,7 +62,8 @@
       ],
       "include_dirs": [
         "<!(node -p \"require('node-addon-api').include_dir\")",
-        "<!@(node -p \"require('node-addon-api').include\")"
+        "<!@(node -p \"require('node-addon-api').include\")",
+        "./lib"
       ],
       "defines": [
         "NAPI_DISABLE_CPP_EXCEPTIONS"

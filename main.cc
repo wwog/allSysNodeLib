@@ -1,7 +1,6 @@
 #include <napi.h>
 #include "Kiwi.h"
 
-
 Napi::Number wrap_init(const Napi::CallbackInfo &info)
 {
   Napi::Env env = info.Env();
@@ -22,13 +21,11 @@ Napi::Number wrap_init(const Napi::CallbackInfo &info)
   Napi::String str = info[0].As<Napi::String>();
   std::string utf8Str = str.Utf8Value();
   const char *charStr = utf8Str.c_str();
-  printf("init: %s\n", charStr);
   int result = KiwiInit(charStr);
-  printf("result: %d\n", result);
   return Napi::Number::New(env, result);
 }
 
-Napi::Number wrap_serverToLocal(const Napi::CallbackInfo &info)
+Napi::Object wrap_serverToLocal(const Napi::CallbackInfo &info)
 {
   Napi::Env env = info.Env();
   Napi::Error error;
@@ -51,7 +48,7 @@ Napi::Number wrap_serverToLocal(const Napi::CallbackInfo &info)
   if (error)
   {
     error.ThrowAsJavaScriptException();
-    return Napi::Number::New(env, -1);
+    return Napi::Object::New(env);
   }
   Napi::String _name = info[0].As<Napi::String>();
   Napi::String _ip = info[1].As<Napi::String>();
@@ -68,14 +65,18 @@ Napi::Number wrap_serverToLocal(const Napi::CallbackInfo &info)
   char *copy_char_ip = strdup(char_ip);
   char *copy_char_port = strdup(char_port);
 
-  int result = KiwiServerToLocal(char_name, copy_char_ip, strlen(char_ip), copy_char_port, strlen(char_port));
+  int code = KiwiServerToLocal(char_name, copy_char_ip, 32, copy_char_port, 10);
+
+  Napi::Object obj = Napi::Object::New(env);
+  obj.Set("ip", Napi::String::New(env, copy_char_ip));
+  obj.Set("port", Napi::String::New(env, copy_char_port));
+  obj.Set("code", Napi::Number::New(env, code));
 
   free(copy_char_ip);
   free(copy_char_port);
-  return Napi::Number::New(env, result);
+
+  return obj;
 }
-
-
 
 Napi::Object Init(Napi::Env env, Napi::Object exports)
 {

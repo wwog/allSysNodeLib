@@ -1,17 +1,21 @@
 {
-  "name": "lib",
+  "name": "kiwilib",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "configure": "node-gyp configure",
-    "build": "node-gyp build",
-    "rebuild": "node-gyp rebuild"
+    "build": "node-gyp build && npm run copy",
+    "rebuild": "node-gyp rebuild && npm run copy",
+    "build:nocopy": "node-gyp build",
+    "rebuild:nocopy": "node-gyp rebuild",
+    "copy": "node scripts/copy.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "axios": "^1.6.2",
     "node-addon-api": "^7.0.0",
     "node-gyp": "^10.0.1"
   }

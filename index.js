@@ -1,4 +1,5 @@
 const nodeApi = require("./build/Release/kiwi.node");
+const axios = require("axios");
 
 /**
  *
@@ -17,10 +18,15 @@ function initial(apiKey) {
  * @property {string} ip
  * @property {string} port
  */
-
+/**
+ * @typedef serverToLocalResult
+ * @property {string} ip
+ * @property {string} port
+ * @property {string} code  , If code is 0, it is successful
+ */
 /**
  * @param {ServerToLocalOption} option
- * @returns
+ * @returns {serverToLocalResult}
  */
 function serverToLocal(option) {
   const { ip, name, port } = option;
