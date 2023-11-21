@@ -2,13 +2,20 @@
   "name": "kiwilib",
   "version": "1.0.0",
   "description": "",
+  "files": [
+    "lib",
+    "release",
+    "binding.gyp",
+    "index.js",
+    "*.node",
+    "main.cc"
+  ],
   "main": "index.js",
   "scripts": {
     "configure": "node-gyp configure",
-    "build": "node-gyp build && npm run copy",
-    "rebuild": "node-gyp rebuild && npm run copy",
-    "build:nocopy": "node-gyp build",
-    "rebuild:nocopy": "node-gyp rebuild",
+    "configure:ia32": "node-gyp configure --arch=ia32",
+    "build": "node-gyp build",
+    "rebuild": "node-gyp rebuild",
     "copy": "node scripts/copy.js"
   },
   "keywords": [],

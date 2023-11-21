@@ -1,4 +1,4 @@
-const nodeApi = require("./kiwi.node");
+const nodeApi = require("./build/Release/kiwi.node");
 
 /**
  * @param {string} apiKey
