@@ -1,7 +1,7 @@
 {
   "targets": [
     {
-      "target_name": "kiwi",
+      "target_name": "kiwi-game-shield",
       "sources": [
         "main.cc"
       ],

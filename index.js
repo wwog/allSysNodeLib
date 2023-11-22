@@ -1,4 +1,4 @@
-const nodeApi = require("./build/Release/kiwi.node");
+const nodeApi = require("./build/Release/kiwi-game-shield.node");
 
 /**
  * @param {string} apiKey

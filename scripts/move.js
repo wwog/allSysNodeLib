@@ -1,0 +1,10 @@
+console.log("test", process.cwd());
+console.log("test", process.cwd());
+console.log("test", process.cwd());
+console.log("test", process.cwd());
+console.log("test", process.cwd());
+console.log("test", process.cwd());
+console.log("test", process.cwd());
+console.log("test", process.cwd());
+console.log("test", process.cwd());
+console.log("test", process.cwd());

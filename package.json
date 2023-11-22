@@ -7,6 +7,7 @@
     "release",
     "binding.gyp",
     "index.js",
+    "scripts",
     "*.node",
     "*.dll",
     "*.h",
@@ -14,10 +15,10 @@
   ],
   "main": "index.js",
   "scripts": {
+    "postinstall": "node scripts/move.js",
     "configure": "node-gyp configure",
     "build": "node-gyp build",
-    "rebuild": "node-gyp rebuild",
-    "copy": "node scripts/copy.js"
+    "rebuild": "node-gyp rebuild"
   },
   "keywords": [],
   "author": "",
