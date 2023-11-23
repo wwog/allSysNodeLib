@@ -5,6 +5,7 @@
       "sources": [
         "main.cc"
       ],
+      "win_delay_load_hook": "true",
       "conditions": [
         [
           "OS=='win'",
