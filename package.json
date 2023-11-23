@@ -15,7 +15,6 @@
   ],
   "main": "index.js",
   "scripts": {
-    "postinstall": "node scripts/move.js",
     "configure": "node-gyp configure",
     "build": "node-gyp build",
     "rebuild": "node-gyp rebuild"
