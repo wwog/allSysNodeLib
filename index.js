@@ -1,4 +1,26 @@
-const nodeApi = require("./build/Release/kiwi.node");
+const os = require("os");
+
+let nodeApi;
+
+switch (os.platform()) {
+  case "win32":
+    nodeApi = require("./release/kiwi_win_64.node");
+    break;
+  case "darwin":
+    switch (os.arch()) {
+      case "arm64":
+        nodeApi = require("./release/kiwi_mac_arm64.node");
+        break;
+      case "x64":
+      default:
+        nodeApi = require("./release/kiwi_mac_x64.node");
+        break;
+    }
+
+    break;
+  default:
+    throw new Error(`not support platform ${os.platform()} ${os.arch()}`);
+}
 
 /**
  * @param {string} apiKey

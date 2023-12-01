@@ -10,6 +10,7 @@
         [
           "OS=='win'",
           {
+            "target_name": "kiwi_win_64",
             "libraries": [
               "<(module_root_dir)/lib/win64.lib"
             ],
@@ -21,14 +22,26 @@
           }
         ],
         [
-          "OS=='mac'",
+          "OS=='mac' and target_arch=='arm64'",
           {
-            "target_name": "kiwi",
+            "target_name": "kiwi_mac_arm64",
             "xcode_settings": {
               "MACOSX_DEPLOYMENT_TARGET": "13.0"
             },
             "libraries": [
-              "<(module_root_dir)/lib/libKiwi.a"
+              "<(module_root_dir)/lib/mac_arm64/libKiwi.a"
+            ]
+          }
+        ],
+        [
+          "OS=='mac' and target_arch=='x64'",
+          {
+            "target_name": "kiwi_mac_x64",
+            "xcode_settings": {
+              "MACOSX_DEPLOYMENT_TARGET": "13.0"
+            },
+            "libraries": [
+              "<(module_root_dir)/lib/mac_intel64/libKiwi.a"
             ]
           }
         ]
