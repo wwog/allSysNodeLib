@@ -60,7 +60,15 @@ function serverToLocal(option) {
   return nodeApi.serverToLocal(name, ip, port);
 }
 
+/**
+ * @returns {string}
+ */
+function getOriginalKey() {
+  return nodeApi.getOriginalKey();
+}
+
 module.exports = {
   initial,
   serverToLocal,
+  getOriginalKey,
 };
