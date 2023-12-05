@@ -15,8 +15,8 @@
   ],
   "main": "index.js",
   "scripts": {
-    "configure": "npm run writeVersionGyp && node-gyp configure",
-    "build": "npm run writeVersionGyp && node-gyp build",
+    "configure": "node-gyp configure",
+    "build": "node-gyp build",
     "rebuild": "npm run configure && node-gyp rebuild",
     "writeVersionGyp": "node scripts/writeVersionGyp.js"
   },

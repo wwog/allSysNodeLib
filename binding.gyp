@@ -1,5 +1,4 @@
 {
-  "includes":["version.gyp"],
   "targets": [
     {
       "target_name": "kiwi",
@@ -11,7 +10,7 @@
         [
           "OS=='win'",
           {
-            "target_name": "kiwi_win_64_<(version)",
+            "target_name": "kiwi_win_64",
             "libraries": [
               "<(module_root_dir)/lib/win64.lib"
             ],
@@ -25,7 +24,7 @@
         [
           "OS=='mac' and target_arch=='arm64'",
           {
-            "target_name": "kiwi_mac_arm64_<(version)",
+            "target_name": "kiwi_mac_arm64",
             "xcode_settings": {
               "MACOSX_DEPLOYMENT_TARGET": "13.0"
             },
@@ -37,7 +36,7 @@
         [
           "OS=='mac' and target_arch=='x64'",
           {
-            "target_name": "kiwi_mac_x64_<(version)",
+            "target_name": "kiwi_mac_x64",
             "xcode_settings": {
               "MACOSX_DEPLOYMENT_TARGET": "13.0"
             },
