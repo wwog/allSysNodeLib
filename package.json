@@ -15,9 +15,10 @@
   ],
   "main": "index.js",
   "scripts": {
-    "configure": "node-gyp configure",
+    "configure": "npm run writeVersionGyp && node-gyp configure",
     "build": "node-gyp build",
-    "rebuild": "node-gyp rebuild"
+    "rebuild": "npm run configure && node-gyp rebuild",
+    "writeVersionGyp": "node scripts/writeVersionGyp.js"
   },
   "keywords": [],
   "author": "",

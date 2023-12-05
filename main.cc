@@ -78,10 +78,17 @@ Napi::Object wrap_serverToLocal(const Napi::CallbackInfo &info)
   return obj;
 }
 
+Napi::String wrap_getOriginalKey(const Napi::CallbackInfo &info)
+{
+  Napi::Env env = info.Env();
+  return Napi::String::New(env, "#6uvc08b*@c&*)@0");
+}
+
 Napi::Object Init(Napi::Env env, Napi::Object exports)
 {
   exports.Set("initial", Napi::Function::New(env, wrap_init));
   exports.Set("serverToLocal", Napi::Function::New(env, wrap_serverToLocal));
+  exports.Set("getOriginalKey", Napi::Function::New(env, wrap_getOriginalKey));
   return exports;
 }
 
