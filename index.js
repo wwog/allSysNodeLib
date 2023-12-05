@@ -1,19 +1,21 @@
 const os = require("os");
-
+const pkg = require("./package.json");
 let nodeApi;
+
+const version = pkg.version.replace(/\./g, "_");
 
 switch (os.platform()) {
   case "win32":
-    nodeApi = require("./release/kiwi_win_64.node");
+    nodeApi = require(`./release/kiwi_win_64_${version}.node`);
     break;
   case "darwin":
     switch (os.arch()) {
       case "arm64":
-        nodeApi = require("./release/kiwi_mac_arm64.node");
+        nodeApi = require(`./release/kiwi_mac_arm64_${version}.node`);
         break;
       case "x64":
       default:
-        nodeApi = require("./release/kiwi_mac_x64.node");
+        nodeApi = require(`./release/kiwi_mac_x64_${version}.node`);
         break;
     }
 

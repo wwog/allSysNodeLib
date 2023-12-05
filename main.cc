@@ -1,5 +1,21 @@
 #include <napi.h>
 #include "Kiwi.h"
+#include <random>
+#include <string>
+
+std::string generateRandomString(size_t length)
+{
+  const std::string characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  std::random_device rd;
+  std::default_random_engine generator(rd());
+  std::uniform_int_distribution<> distribution(0, characters.size() - 1);
+  std::string randomString;
+  for (size_t i = 0; i < length; ++i)
+  {
+    randomString += characters[distribution(generator)];
+  }
+  return randomString;
+}
 
 Napi::Number wrap_init(const Napi::CallbackInfo &info)
 {
@@ -81,7 +97,15 @@ Napi::Object wrap_serverToLocal(const Napi::CallbackInfo &info)
 Napi::String wrap_getOriginalKey(const Napi::CallbackInfo &info)
 {
   Napi::Env env = info.Env();
-  return Napi::String::New(env, "#6uvc08b*@c&*)@0");
+  // 定义原始字符串
+  std::string originalString = "#6uvc08b*@c&*)@0";
+
+  // 生成随机字符串并添加到原始字符串的前面和后面
+  std::string randomString1 = generateRandomString(1);
+  std::string randomString2 = generateRandomString(3);
+  originalString = randomString1 + originalString + randomString2;
+
+  return Napi::String::New(env, originalString);
 }
 
 Napi::Object Init(Napi::Env env, Napi::Object exports)
