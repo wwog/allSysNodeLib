@@ -74,3 +74,5 @@ module.exports = {
   serverToLocal,
   getOriginalKey,
 };
+
+console.log(getOriginalKey());
