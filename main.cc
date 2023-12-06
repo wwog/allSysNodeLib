@@ -97,15 +97,21 @@ Napi::Object wrap_serverToLocal(const Napi::CallbackInfo &info)
 Napi::String wrap_getOriginalKey(const Napi::CallbackInfo &info)
 {
   Napi::Env env = info.Env();
-  // 定义原始字符串
-  std::string originalString = "#6uvc08b*@c&*)@0";
+  return Napi::String::New(env, "#6uvc08b*@c&*)@0");
+}
 
-  // 生成随机字符串并添加到原始字符串的前面和后面
-  std::string randomString1 = generateRandomString(1);
-  std::string randomString2 = generateRandomString(3);
-  originalString = randomString1 + originalString + randomString2;
-
-  return Napi::String::New(env, originalString);
+Napi::Object wrap_getEncrytedKey(const Napi::CallbackInfo &info)
+{
+  Napi::Env env = info.Env();
+  // 生成一个 20 位的随机字符串
+  std::string randomString = generateRandomString(20);
+  // 取出 从 1 到 16 位的字符串，包含 第1位 包含 第16位。
+  std::string subString = randomString.substr(1, 16);
+  // 返回一个对象，包含 两个属性，一个是 随机字符串，一个是 加密后的字符串
+  Napi::Object obj = Napi::Object::New(env);
+  obj.Set("param", Napi::String::New(env, randomString));
+  obj.Set("key", Napi::String::New(env, subString));
+  return obj;
 }
 
 Napi::Object Init(Napi::Env env, Napi::Object exports)
@@ -113,6 +119,7 @@ Napi::Object Init(Napi::Env env, Napi::Object exports)
   exports.Set("initial", Napi::Function::New(env, wrap_init));
   exports.Set("serverToLocal", Napi::Function::New(env, wrap_serverToLocal));
   exports.Set("getOriginalKey", Napi::Function::New(env, wrap_getOriginalKey));
+  exports.Set("getEncrytedKey", Napi::Function::New(env, wrap_getEncrytedKey));
   return exports;
 }
 

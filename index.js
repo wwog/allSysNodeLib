@@ -1,21 +1,20 @@
 const os = require("os");
-const pkg = require("./package.json");
+
 let nodeApi;
 
-const version = pkg.version.replace(/\./g, "_");
 
 switch (os.platform()) {
   case "win32":
-    nodeApi = require(`./release/kiwi_win_64_${version}.node`);
+    nodeApi = require(`./release/kiwi_win_64.node`);
     break;
   case "darwin":
     switch (os.arch()) {
       case "arm64":
-        nodeApi = require(`./release/kiwi_mac_arm64_${version}.node`);
+        nodeApi = require(`./release/kiwi_mac_arm64.node`);
         break;
       case "x64":
       default:
-        nodeApi = require(`./release/kiwi_mac_x64_${version}.node`);
+        nodeApi = require(`./release/kiwi_mac_x64.node`);
         break;
     }
 
@@ -68,6 +67,12 @@ function serverToLocal(option) {
 function getOriginalKey() {
   return nodeApi.getOriginalKey();
 }
+
+function getEncrytedKey() {
+  return nodeApi.getEncrytedKey();
+}
+
+console.log(getEncrytedKey());
 
 module.exports = {
   initial,
