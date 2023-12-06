@@ -2,7 +2,6 @@ const os = require("os");
 
 let nodeApi;
 
-
 switch (os.platform()) {
   case "win32":
     nodeApi = require(`./release/kiwi_win_64.node`);
@@ -68,16 +67,21 @@ function getOriginalKey() {
   return nodeApi.getOriginalKey();
 }
 
+/**
+ * @typedef getEncrytedKeyResult
+ * @property {string} param
+ * @property {string} key
+ */
+/**
+ * @returns {getEncrytedKeyResult}
+ */
 function getEncrytedKey() {
   return nodeApi.getEncrytedKey();
 }
-
-console.log(getEncrytedKey());
 
 module.exports = {
   initial,
   serverToLocal,
   getOriginalKey,
+  getEncrytedKey,
 };
-
-console.log(getOriginalKey());
