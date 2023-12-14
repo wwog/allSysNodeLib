@@ -29,7 +29,7 @@
               "MACOSX_DEPLOYMENT_TARGET": "13.0"
             },
             "libraries": [
-              "<(module_root_dir)/lib/mac_arm64/libKiwi.a"
+              "<(module_root_dir)/lib/mac.a"
             ]
           }
         ],
@@ -41,7 +41,7 @@
               "MACOSX_DEPLOYMENT_TARGET": "13.0"
             },
             "libraries": [
-              "<(module_root_dir)/lib/mac_intel64/libKiwi.a"
+              "<(module_root_dir)/lib/mac.a"
             ]
           }
         ]
