@@ -39,3 +39,5 @@
 *.aiff binary
 *.wma binary
 *.ogg binary
+*.a binary
+*.lib binary
