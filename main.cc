@@ -45,7 +45,7 @@ Napi::Object wrap_serverToLocal(const Napi::CallbackInfo &info)
 {
   Napi::Env env = info.Env();
   Napi::Error error;
-  if (info.Length() < 3)
+  if (info.Length() < 1)
   {
     error = Napi::Error::New(env, "init: expected 3 argument");
   }
@@ -53,22 +53,22 @@ Napi::Object wrap_serverToLocal(const Napi::CallbackInfo &info)
   {
     error = Napi::Error::New(env, "name type not is string");
   }
-  else if (info[1].IsString() == false)
-  {
-    error = Napi::Error::New(env, "ip type not is string");
-  }
-  else if (info[2].IsString() == false)
-  {
-    error = Napi::Error::New(env, "port type not is string");
-  }
+  // else if (info[1].IsString() == false)
+  // {
+  //   error = Napi::Error::New(env, "ip type not is string");
+  // }
+  // else if (info[2].IsString() == false)
+  // {
+  //   error = Napi::Error::New(env, "port type not is string");
+  // }
   if (error)
   {
     error.ThrowAsJavaScriptException();
     return Napi::Object::New(env);
   }
   Napi::String _name = info[0].As<Napi::String>();
-  Napi::String _ip = info[1].As<Napi::String>();
-  Napi::String _port = info[2].As<Napi::String>();
+  // Napi::String _ip = info[1].As<Napi::String>();
+  // Napi::String _port = info[2].As<Napi::String>();
 
   std::string utf8_name = _name.Utf8Value();
   const char *char_name = utf8_name.c_str();
