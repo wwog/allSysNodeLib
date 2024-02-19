@@ -40,3 +40,4 @@
 *.wma binary
 *.ogg binary
 *.a binary
+*.lib binary*.a binary
