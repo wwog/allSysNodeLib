@@ -71,25 +71,17 @@ Napi::Object wrap_serverToLocal(const Napi::CallbackInfo &info)
   Napi::String _port = info[2].As<Napi::String>();
 
   std::string utf8_name = _name.Utf8Value();
-  std::string utf8_ip = _ip.Utf8Value();
-  std::string utf8_port = _port.Utf8Value();
-
   const char *char_name = utf8_name.c_str();
-  const char *char_ip = utf8_ip.c_str();
-  const char *char_port = utf8_port.c_str();
+  
+  char ip[64] = {0}
+  char port[16] = {0}
 
-  char *copy_char_ip = strdup(char_ip);
-  char *copy_char_port = strdup(char_port);
-
-  int code = KiwiServerToLocal(char_name, copy_char_ip, 32, copy_char_port, 10);
+  int code = KiwiServerToLocal(char_name, ip, sizeof(ip), port, sizeof(port));
 
   Napi::Object obj = Napi::Object::New(env);
-  obj.Set("ip", Napi::String::New(env, copy_char_ip));
-  obj.Set("port", Napi::String::New(env, copy_char_port));
+  obj.Set("ip", Napi::String::New(env, ip));
+  obj.Set("port", Napi::String::New(env, port));
   obj.Set("code", Napi::Number::New(env, code));
-
-  free(copy_char_ip);
-  free(copy_char_port);
 
   return obj;
 }
@@ -100,7 +92,7 @@ Napi::String wrap_getOriginalKey(const Napi::CallbackInfo &info)
   return Napi::String::New(env, "#6uvc08b*@c&*)@0");
 }
 
-Napi::Object wrap_getEncrytedKey(const Napi::CallbackInfo &info)
+Napi::Object wrap_getEncryptedKey(const Napi::CallbackInfo &info)
 {
   Napi::Env env = info.Env();
   // 生成一个 20 位的随机字符串
@@ -119,7 +111,7 @@ Napi::Object Init(Napi::Env env, Napi::Object exports)
   exports.Set("initial", Napi::Function::New(env, wrap_init));
   exports.Set("serverToLocal", Napi::Function::New(env, wrap_serverToLocal));
   exports.Set("getOriginalKey", Napi::Function::New(env, wrap_getOriginalKey));
-  exports.Set("getEncrytedKey", Napi::Function::New(env, wrap_getEncrytedKey));
+  exports.Set("getEncryptedKey", Napi::Function::New(env, wrap_getEncryptedKey));
   return exports;
 }
 
