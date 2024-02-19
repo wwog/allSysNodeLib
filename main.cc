@@ -73,8 +73,8 @@ Napi::Object wrap_serverToLocal(const Napi::CallbackInfo &info)
   std::string utf8_name = _name.Utf8Value();
   const char *char_name = utf8_name.c_str();
   
-  char ip[64] = {0}
-  char port[16] = {0}
+  char ip[64] = {0};
+  char port[16] = {0};
 
   int code = KiwiServerToLocal(char_name, ip, sizeof(ip), port, sizeof(port));
 
