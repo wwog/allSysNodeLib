@@ -47,7 +47,7 @@ Napi::Object wrap_serverToLocal(const Napi::CallbackInfo &info)
   Napi::Error error;
   if (info.Length() < 1)
   {
-    error = Napi::Error::New(env, "init: expected 3 argument");
+    error = Napi::Error::New(env, "init: expected 1 argument");
   }
   else if (info[0].IsString() == false)
   {
